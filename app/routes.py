@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, VisitorForm, CheckoutForm, VerifyUserForm
 from flask_login import current_user, login_user, logout_user
-from app.models import Host, Visitor
+from app.models import Host, Visitor, Visname
 from datetime import datetime
 from flask_mail import Mail, Message
 
@@ -19,8 +19,8 @@ def index():
 
     if form.validate_on_submit():
         vist = Visitor(name=form.name.data, email=form.email.data, phone=form.phone.data)
-        host = Host.query.filter_by(vis_name=form.email.data).first()
-        if host is not None:
+        visexp = Visname.query.filter_by(visExpect=form.email.data).first()
+        if visexp is not None:
             db.session.add(vist)
             db.session.commit()
             flash('Enjoy your visit')
@@ -37,9 +37,14 @@ def login():
         return redirect(url_for('index'))
     form = LoginForm()
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        remember_me = request.form['remember_me']
+        try:
+            username = request.form['username']
+            password = request.form['password']
+            remember_me = request.form['remember_me']
+        except KeyError:
+            username = request.form['username']
+            password = request.form['password']
+
     if form.validate_on_submit():
         host = Host.query.filter_by(username=form.username.data).first()
         if host is None or not host.check_password(form.password.data):
@@ -81,8 +86,8 @@ def host():
         email = request.form['email']
     if form.validate_on_submit():
         host = Host.query.filter_by(id=id).first()
-        host.vis_name = form.email.data
-        db.session.add(host)
+        visexp = Visname(host_id=host.id, visExpect=form.email.data)
+        db.session.add(visexp)
         db.session.commit()
         flash('You are now expecting a user')
         return redirect(url_for('host'))

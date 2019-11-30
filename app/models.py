@@ -21,7 +21,7 @@ class Host(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    vis_name = db.Column(db.String(64), unique=True)
+    vis_name = db.relationship('Visname', backref='host', lazy=True)
 
     def __repr__(self):
         return '<Host {}>'.format(self.body)
@@ -35,3 +35,9 @@ class Host(UserMixin, db.Model):
     @login.user_loader
     def load_user(id):
         return Host.query.get(int(id))
+
+
+class Visname(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    host_id = db.Column(db.Integer, db.ForeignKey('host.id'), index=True)
+    visExpect = db.Column(db.String(64))
