@@ -11,6 +11,12 @@ from flask_mail import Mail, Message
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     form = VisitorForm()
+
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        phone = request.form['phone']
+
     if form.validate_on_submit():
         vist = Visitor(name=form.name.data, email=form.email.data, phone=form.phone.data)
         host = Host.query.filter_by(vis_name=form.email.data).first()
@@ -30,6 +36,10 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = LoginForm()
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        remember_me = request.form['remember_me']
     if form.validate_on_submit():
         host = Host.query.filter_by(username=form.username.data).first()
         if host is None or not host.check_password(form.password.data):
@@ -45,6 +55,12 @@ def register():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = RegistrationForm()
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        password2 = request.form['password2']
+
     if form.validate_on_submit():
         host = Host(username=form.username.data, email=form.email.data)
         host.set_password(form.password.data)
@@ -60,6 +76,9 @@ def host():
     if current_user.is_authenticated:
         id = current_user.get_id()
     form = VerifyUserForm()
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
     if form.validate_on_submit():
         host = Host.query.filter_by(id=id).first()
         host.vis_name = form.email.data
@@ -73,6 +92,9 @@ def host():
 @app.route('/checkout', methods=['GET', 'POST'])
 def checkout():
     form = CheckoutForm()
+    if request.method == 'POST':
+        name = request.form['name']
+        phone = request.form['phone']
     if form.validate_on_submit():
         vist = Visitor.query.filter_by(phone=form.phone.data).first()
         if vist is None:

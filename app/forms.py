@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField
+from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length, NumberRange
 from app.models import Host
 
 
@@ -23,7 +23,7 @@ class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField(
-        'Repeat Password', validators=[DataRequired(), EqualTo('password')])
+        'Password2', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Submit')
 
     def validate_username(self, username):
@@ -45,5 +45,5 @@ class CheckoutForm(FlaskForm):
 
 class VerifyUserForm(FlaskForm):
     name = StringField('Vistior you are expecting?', validators=[DataRequired()])
-    email = StringField('Visitors email?', validators=[DataRequired()])
+    email = StringField('Visitors email?', validators=[DataRequired(), Email()])
     submit = SubmitField('Submit')

@@ -1,51 +1,120 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="wrapper fadeInDown">
-      <div id="formContent">
-        <!-- Tabs Titles -->
+    <div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+				<form action="" method="post" novalidate class="login100-form validate-form flex-sb flex-w">
+                    {{ form.hidden_tag() }}
+					<span class="login100-form-title p-b-32">
+						Visitor Check In
+					</span>
 
-        <!-- Icon -->
-        <div class="fadeIn first" style="padding-top:25px">
-            <img src="{{url_for('static',filename='../static/images/logo.png')}}" id="icon" alt="User Icon" />
-        </div>
-        <div>
-            <h2 style="margin: 30px 8px 30px 8px; color:#121111" class="fadeIn first">Visitor Check in</h2>
-        </div>
+					<span class="txt1 p-b-11">
+						Name
+					</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "Name is required">
+                        <div>
+                            <input class="input100" type="text" name="name" >
+						    <span class="focus-input100"></span>
+                            {% for error in form.name.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                        </div>
+					</div>
 
-        <!-- Login Form -->
-        <form action="" method="post" novalidate>
-            {{ form.hidden_tag() }}
-            <p class="fadeIn second">
-                {{ form.name.label }}<br>
-                {{ form.name(size=32) }}<br>
-                {% for error in form.name.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p class="fadeIn third">
-                {{ form.email.label }}<br>
-                {{ form.email(size=32) }}<br>
-                {% for error in form.email.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p class="fadeIn fourth">
-                {{ form.phone.label }}<br>
-                {{ form.phone(size=10) }}<br>
-                {% for error in form.phone.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p class="fadeIn fifth">{{ form.submit() }}</p>
-        </form>
 
-        <!-- Other Links -->
-        <div id="formFooter">
-                <p><a href="/login">Sign in Host</a></p>
-                <p><a href="/checkout">Checkout Visitor</a></p>
-        </div>
+                    <span class="txt1 p-b-11">
+						Email
+					</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "Not valid email">
+                        <div>
+                            <input class="input100" type="text" name="email" >
+						    <span class="focus-input100"></span>
+                            {% for error in form.email.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                        </div>
+					</div>
 
-      </div>
-    </div>
+					<span class="txt1 p-b-11">
+						Phone No
+					</span>
+					<div class="wrap-input100 validate-input m-b-12" data-validate = "Phone no is required">
+                        <div>
+                            <input class="input100" type="text" name="phone" >
+						    <span class="focus-input100"></span>
+                            {% for error in form.phone.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                        </div>
+					</div>
+
+
+					<div class="container-login100-form-btn">
+						<button type="submit" class="login100-form-btn">
+							Check In
+						</button>
+					</div>
+
+
+                    <div style="padding-top:20px" class="flex-sb-m w-full p-b-48">
+						<span>
+                            <span style="padding-right:50px" class="txt3"><a href="/login">Sign in Host</a></span>
+                            <span class="txt3"><a href="/checkout">Checkout Visitor</a></span>
+						</span>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+<!--    <div id="dropDownSelect1"></div>-->
+<!--    <div class="wrapper fadeInDown">-->
+<!--      <div id="formContent">-->
+<!--        &lt;!&ndash; Tabs Titles &ndash;&gt;-->
+
+<!--        &lt;!&ndash; Icon &ndash;&gt;-->
+<!--        <div class="fadeIn first" style="padding-top:25px">-->
+<!--            <img src="{{url_for('static',filename='../static/images/logo.png')}}" id="icon" alt="User Icon" />-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <h2 style="margin: 30px 8px 30px 8px; color:#121111" class="fadeIn first">Visitor Check in</h2>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Login Form &ndash;&gt;-->
+<!--        <form action="" method="post" novalidate>-->
+<!--            {{ form.hidden_tag() }}-->
+<!--            <p class="fadeIn second">-->
+<!--                {{ form.name.label }}<br>-->
+<!--                {{ form.name(size=32) }}<br>-->
+<!--                {% for error in form.name.errors %}-->
+<!--                <span style="color: red;">[{{ error }}]</span>-->
+<!--                {% endfor %}-->
+<!--            </p>-->
+<!--            <p class="fadeIn third">-->
+<!--                {{ form.email.label }}<br>-->
+<!--                {{ form.email(size=32) }}<br>-->
+<!--                {% for error in form.email.errors %}-->
+<!--                <span style="color: red;">[{{ error }}]</span>-->
+<!--                {% endfor %}-->
+<!--            </p>-->
+<!--            <p class="fadeIn fourth">-->
+<!--                {{ form.phone.label }}<br>-->
+<!--                {{ form.phone(size=10) }}<br>-->
+<!--                {% for error in form.phone.errors %}-->
+<!--                <span style="color: red;">[{{ error }}]</span>-->
+<!--                {% endfor %}-->
+<!--            </p>-->
+<!--            <p class="fadeIn fifth">{{ form.submit() }}</p>-->
+<!--        </form>-->
+
+<!--        &lt;!&ndash; Other Links &ndash;&gt;-->
+<!--        <div id="formFooter">-->
+<!--                <p><a href="/login">Sign in Host</a></p>-->
+<!--                <p><a href="/checkout">Checkout Visitor</a></p>-->
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </div>-->
 {% endblock %}

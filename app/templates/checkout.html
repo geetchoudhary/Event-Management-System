@@ -1,33 +1,78 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="wrapper fadeInDown">
-        <div id="formContent">
-            <!-- Tabs Titles -->
-            <!-- Icon -->
-            <div class="fadeIn first">
-                <h2 style="margin: 30px 8px 30px 8px; color:#121111">Checkout Now</h2>
-            </div>
-            <!-- Login Form -->
-            <form action="" method="post" novalidate>
-                {{ form.hidden_tag() }}
-                <p class="fadeIn second">
-                    {{ form.name.label }}<br>
-                    {{ form.name(size=32) }}<br>
-                    {% for error in form.name.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-                </p>
-                <p class="fadeIn third">
-                    {{ form.phone.label }}<br>
-                    {{ form.phone(size=10) }}<br>
-                    {% for error in form.phone.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-                </p>
-                <p class="fadeIn fourth">{{ form.submit() }}</p>
-            </form>
-            <!-- Other Links -->
-        </div>
-    </div>
+    <div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+				<form action="" method="post" novalidate class="login100-form validate-form flex-sb flex-w">
+                    {{ form.hidden_tag() }}
+					<span class="login100-form-title p-b-32">
+						Checkout Visitor
+					</span>
+
+					<span class="txt1 p-b-11">
+						Your name
+					</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "Name is required">
+                        <div>
+                            <input class="input100" type="text" name="name" >
+						    <span class="focus-input100"></span>
+                            {% for error in form.name.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                        </div>
+					</div>
+
+					<span class="txt1 p-b-11">
+						Phone No
+					</span>
+					<div class="wrap-input100 validate-input m-b-12" data-validate = "Phone no is required">
+                        <div>
+                            <input class="input100" type="text" name="phone" >
+						    <span class="focus-input100"></span>
+                            {% for error in form.phone.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                        </div>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button type="submit" class="login100-form-btn">
+							Checkout
+						</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+<!--    <div class="wrapper fadeInDown">-->
+<!--        <div id="formContent">-->
+<!--            &lt;!&ndash; Tabs Titles &ndash;&gt;-->
+<!--            &lt;!&ndash; Icon &ndash;&gt;-->
+<!--            <div class="fadeIn first">-->
+<!--                <h2 style="margin: 30px 8px 30px 8px; color:#121111">Checkout Now</h2>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; Login Form &ndash;&gt;-->
+<!--            <form action="" method="post" novalidate>-->
+<!--                {{ form.hidden_tag() }}-->
+<!--                <p class="fadeIn second">-->
+<!--                    {{ form.name.label }}<br>-->
+<!--                    {{ form.name(size=32) }}<br>-->
+<!--                    {% for error in form.name.errors %}-->
+<!--                    <span style="color: red;">[{{ error }}]</span>-->
+<!--                    {% endfor %}-->
+<!--                </p>-->
+<!--                <p class="fadeIn third">-->
+<!--                    {{ form.phone.label }}<br>-->
+<!--                    {{ form.phone(size=10) }}<br>-->
+<!--                    {% for error in form.phone.errors %}-->
+<!--                    <span style="color: red;">[{{ error }}]</span>-->
+<!--                    {% endfor %}-->
+<!--                </p>-->
+<!--                <p class="fadeIn fourth">{{ form.submit() }}</p>-->
+<!--            </form>-->
+<!--            &lt;!&ndash; Other Links &ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
 {% endblock %}
