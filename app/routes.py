@@ -6,12 +6,31 @@ from app.models import Host, Visitor, Visname
 from datetime import datetime
 from flask_mail import Mail, Message
 
+# flask_mail config
+app.config.update(dict(
+    DEBUG=True,
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT=587,
+    MAIL_USE_TLS=True,
+    MAIL_USE_SSL=False,
+    MAIL_USERNAME='innovaccereventexpo@gmail.com',
+    MAIL_PASSWORD='querty$123',
+))
 
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/index', methods=['GET', 'POST'])
+
+def send_email(subject, to, message):
+    msg = Message(subject,  # subject
+                  sender=("Admin", "innovaccereventexpo@gmail.com "),
+                  recipients=[to],
+                  body=message)
+    mymail.send(msg)
+
+
+mymail = Mail(app)
+
+
 def index():
     form = VisitorForm()
-
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
