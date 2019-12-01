@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath app/ app:eventsys
+web: gunicorn --pythonpath app/temolates app:eventsys
