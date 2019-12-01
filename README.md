@@ -1,6 +1,6 @@
 ## Assignment for SDE - Intern (Applications)
 
-# Entry Notifier
+# Entry Management System
 
 The main motive of this project was to create a software that can help a visitor check into an office without any kind of human intervention. The assignment aims
 at automating check in's and check out's at a workplace.
@@ -26,6 +26,25 @@ at automating check in's and check out's at a workplace.
 - **APIs**
     - Twilio for sending sms.
     - Flask_mail (0.9.1) for sending emails.
+    
+ ### Deployment & Testing
+To test/run the app locally follow the steps given below.
+
+- Clone this repository and install all the modules mentioned in requirements.txt file.
+
+```python
+$ pip install -r requirements.txt
+```
+
+- Goto the application directory through the terminal and run the application as follows:
+
+```python
+$ cd app
+$ export FLASK_APP=eventsys.py
+$ export FLASK_DEBUG=1
+$ flask run
+```
+- As soon as you execute these commands open [http://localhost:5000](http://localhost:5000) in your browser to see the application running.
 
 
 ## Implementation
@@ -33,7 +52,6 @@ at automating check in's and check out's at a workplace.
 The application can be primarily used for the following three tasks:
 
 - Registration of a new host
-- Host enters the visitor he is expecting
 - Visitor Check In
 - Visitor Check Out
 
@@ -87,24 +105,14 @@ The Host enters the details of the visitor he is expecting. Host needs to enter 
 
 <img width="1083" alt="Screenshot 2019-12-01 at 9 06 33 PM" src="https://user-images.githubusercontent.com/35570715/69917087-6ae93e80-1488-11ea-9732-a17d126139e9.png">
 
-### Deployment & Testing
-To test/run the app locally follow the steps given below.
+### Mails
 
-- Clone this repository and install all the modules mentioned in requirements.txt file.
+- **Host Email**
+<img width="404" alt="Screenshot 2019-12-01 at 10 28 39 PM" src="https://user-images.githubusercontent.com/35570715/69917263-12b33c00-148a-11ea-99d8-cc36879de48f.png">
 
-```python
-$ pip install -r requirements.txt
-```
+- **Visitor Email**
+<img width="404" alt="Screenshot 2019-12-01 at 10 28 39 PM" src="https://user-images.githubusercontent.com/35570715/69917343-b997d800-148a-11ea-887d-790375e71969.JPG">
 
-- Goto the application directory through the terminal and run the application as follows:
-
-```python
-$ cd app
-$ export FLASK_APP=eventsys.py
-$ export FLASK_DEBUG=1
-$ flask run
-```
-- As soon as you execute these commands open [http://localhost:5000](http://localhost:5000) in your browser to see the application running.
 
 ### Future Enhancements
 This is only a Test version, many more functionalities can be added, It still has a wide scope for improvements and enhancements. Some of them include:
