@@ -29,6 +29,8 @@ def send_email(subject, to, message):
 mymail = Mail(app)
 
 
+@app.route('/')
+@app.route('/index', methods=['GET', 'POST'])
 def index():
     form = VisitorForm()
     if request.method == 'POST':
