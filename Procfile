@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath app/temolates app:eventsys
+web: gunicorn --pythonpath app/templates app:eventsys
