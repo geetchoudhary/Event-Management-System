@@ -14,9 +14,10 @@ app.config.update(dict(
     MAIL_USE_TLS=True,
     MAIL_USE_SSL=False,
     MAIL_USERNAME='innovaccereventexpo@gmail.com',
-    MAIL_PASSWORD='querty$123',
+    MAIL_PASSWORD='qwerty$123',
 ))
 
+mymail = Mail(app)
 
 def send_email(subject, to, message):
     msg = Message(subject,  # subject
@@ -25,8 +26,6 @@ def send_email(subject, to, message):
                   body=message)
     mymail.send(msg)
 
-
-mymail = Mail(app)
 
 
 @app.route('/')
@@ -38,13 +37,20 @@ def index():
         email = request.form['email']
         phone = request.form['phone']
 
+
     if form.validate_on_submit():
         vist = Visitor(name=form.name.data, email=form.email.data, phone=form.phone.data)
         visexp = Visname.query.filter_by(visExpect=form.email.data).first()
+        host = Host.query.filter_by(id=visexp.host_id).first()
         if visexp is not None:
             db.session.add(vist)
             db.session.commit()
             flash('Enjoy your visit')
+            message = ("New Visitor details: \n1. Name: " + form.name.data +
+                       "\n2. Phone: " + form.phone.data +
+                       "\n3. Email: " + form.email.data
+                       )
+            send_email("Visitor Info", host.email, message)
             return redirect(url_for('index'))
         else:
             flash('No hosts available')
@@ -123,10 +129,20 @@ def checkout():
         phone = request.form['phone']
     if form.validate_on_submit():
         vist = Visitor.query.filter_by(phone=form.phone.data).first()
+        visexp = Visname.query.filter_by(visExpect=vist.email).first()
+        host = Host.query.filter_by(id=visexp.host_id).first()
         if vist is None:
             flash('Check in First')
             return redirect(url_for('checkout'))
         vist.checkOutTime = datetime.utcnow()
+        message = ("Meeting Details:\n1. Name: " + str(vist.name) +
+                   "\n2. Phone: " + str(vist.phone) +
+                   "\n3. Check-in time: " + str(vist.checkInTime )+
+                   "\n4. Check-out time: " + str(vist.checkOutTime) +
+                   "\n5. Host name: " + str(host.username) +
+                   "\n6. Host email: " + str(host.email)
+                   )
+        send_email("Meeting details", vist.email, message)
         db.session.add(vist)
         db.session.commit()
         flash('Congratulations, you have checked out')
