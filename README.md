@@ -41,7 +41,7 @@ The application can be primarily used for the following three tasks:
 
 - **Check In Page**
 
-![checkinhome](https://drive.google.com/file/d/1E00Y3Dy4Y12WFC3QTArAiNTx0QwS-S8X/view?usp=sharing)
+<img width="696" alt="Screenshot 2019-11-30 at 5 00 08 PM" src="https://user-images.githubusercontent.com/35570715/69917003-bcdd9480-1487-11ea-8a69-fd081ff88f2f.png">
 
 The visitor can only check in if he is already registered with a host by filling all the fields in the form.
  All the fields are mandatory to fill. The form is validated in the flask backend for any mistakes or null values and the check in is terminated. If the visitor was not expected
@@ -53,7 +53,7 @@ The visitor can only check in if he is already registered with a host by filling
 
 - **Check Out Page**
 
-![check-out home](https://drive.google.com/file/d/1rDCTRXAE775O9aYIoxqXAH6fCiW1lLir/view?usp=sharing)
+<img width="696" alt="Screenshot 2019-11-30 at 5 00 49 PM" src="https://user-images.githubusercontent.com/35570715/69917028-00380300-1488-11ea-8963-e8e3bafc4fa2.png">
 
 A separate check out page has been created where the user is required to mention the same mobile number they entered during check in.
  The checkout time is not required to be entered manually. If all details are correct and valid, the user will be checked out and will be sent all details through sms and email.
@@ -66,7 +66,7 @@ A separate check out page has been created where the user is required to mention
 
 - **Host Sign up**
 
-![host-login](https://drive.google.com/drive/u/0/folders/1JOtZDW1pZdkBfe9Yhaw7AY4vXWtQpdJ1)
+<img width="696" alt="Screenshot 2019-11-30 at 4 58 23 PM" src="https://user-images.githubusercontent.com/35570715/69917045-278ed000-1488-11ea-977e-075eaa967506.png">
 
 > For testing purposes the database includes a pre-made host
 
@@ -74,17 +74,18 @@ A separate check out page has been created where the user is required to mention
 
 - **Host Login**
 
-![host-login](https://drive.google.com/file/d/1RxSZW5mxOYqMEe29rCcLbdawH_OvIMO9/view?usp=sharing)
+<img width="696" alt="Screenshot 2019-11-30 at 4 58 57 PM" src="https://user-images.githubusercontent.com/35570715/69917039-16de5a00-1488-11ea-85b3-ddc81864245d.png">
 
 - **Host Dashboard**
 
-![host-dash](https://drive.google.com/file/d/1yn2s0Z59-I-34Qcz8CLFf4BFzCANKALD/view?usp=sharing)
+<img width="696" alt="Screenshot 2019-11-30 at 4 59 25 PM" src="https://user-images.githubusercontent.com/35570715/69917056-3a090980-1488-11ea-8f51-8faf53e1011c.png">
+
 
 The Host enters the details of the visitor he is expecting. Host needs to enter these details before so that the Visitor can check in.
 
 ### The Database
 
-![firebase](https://drive.google.com/file/d/120dtX6norLIIl_Tw-Mlr9x6TBb1nftqQ/view?usp=sharing)
+<img width="1083" alt="Screenshot 2019-12-01 at 9 06 33 PM" src="https://user-images.githubusercontent.com/35570715/69917087-6ae93e80-1488-11ea-9732-a17d126139e9.png">
 
 ### Deployment & Testing
 To test/run the app locally follow the steps given below.
@@ -100,7 +101,7 @@ $ pip install -r requirements.txt
 ```python
 $ cd app
 $ export FLASK_APP=eventsys.py
-$ set FLASK_DEBUG=1
+$ export FLASK_DEBUG=1
 $ flask run
 ```
 - As soon as you execute these commands open [http://localhost:5000](http://localhost:5000) in your browser to see the application running.
