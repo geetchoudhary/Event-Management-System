@@ -1,6 +1,4 @@
-## Assignment for SDE - Intern (Applications)
-
-# Entry Management System
+## Entry Management System
 
 The main motive of this project was to create a software that can help a visitor check into an office without any kind of human intervention. The assignment aims
 at automating check in's and check out's at a workplace.
